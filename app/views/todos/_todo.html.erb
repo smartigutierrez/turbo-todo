@@ -1,0 +1,22 @@
+<div id="<%= dom_id todo %>">
+<li class="py-2 px-4 border-b border-gray-300">
+  <%= todo.name %>
+</li>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Status:</strong>
+    <%= todo.status %>
+  </p>
+
+<li id="<%= "#{dom_id(todo)}_container" %>" class="py-2 px-4 border-b border-gray-300">
+  <%= turbo_frame_tag dom_id(todo) do %>
+    <%= link_to todo.name, edit_todo_path(todo) %>
+  <% end %>
+</li>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this todo", todo, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this todo', edit_todo_path(todo), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
